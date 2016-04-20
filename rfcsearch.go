@@ -15,12 +15,17 @@ import (
 const searchURL = "https://www.rfc-editor.org/search/rfc_search_detail.php?page=All"
 
 type RFC struct {
-	Number   string
-	Title    string
-	Authors  string
-	Date     string
-	MoreInfo string
-	Status   string
+	Number   string `json:"number"`
+	Title    string `json:"title"`
+	Authors  string `json:"authors"`
+	Date     string `json:"date"`
+	MoreInfo string `json:"moreinfo,omitempty"`
+	Status   string `json:"status"`
+	Link     string `json:"link"`
+}
+
+type APIMessage struct {
+	Message string `json:"message"`
 }
 
 func buildQueryURL(query string) (*url.URL, error) {
@@ -58,6 +63,7 @@ func parseDocument(doc *goquery.Document) []RFC {
 		switch col {
 		case 0:
 			rfc.Number = strings.TrimSpace(strings.TrimLeft(s.Text(), "RFC"))
+			rfc.Link = "http://tools.ietf.org/html/rfc" + rfc.Number
 		case 2:
 			rfc.Title = strings.TrimSpace(s.Text())
 		case 3:
@@ -106,6 +112,14 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	results := parseDocument(doc)
+	if len(results) < 1 {
+		message := &APIMessage{"no results."}
+		if err := json.NewEncoder(w).Encode(message); err != nil {
+			log.Println(err)
+		}
+		return
+	}
+
 	if err := json.NewEncoder(w).Encode(results); err != nil {
 		log.Println(err)
 	}
@@ -113,5 +127,9 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	http.HandleFunc("/", indexHandler)
-	log.Fatal(http.ListenAndServe(":8080", nil))
+
+	// Run on OpenShift
+	bind := fmt.Sprintf("%s:%s", os.Getenv("OPENSHIFT_GO_IP"), os.Getenv("OPENSHIFT_GO_PORT"))
+	fmt.Printf("listening on %s...", bind)
+	log.Fatal(http.ListenAndServe(bind, nil))
 }
