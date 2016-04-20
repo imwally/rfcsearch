@@ -14,7 +14,7 @@ import (
 	"github.com/PuerkitoBio/goquery"
 )
 
-const searchURL = "https://www.rfc-editor.org/search/rfc_search_detail.php?page=All"
+const searchURL = "https://www.rfc-editor.org/search/rfc_search_detail.php?page=All&sortkey=Date&sorting=DESC"
 
 type RFC struct {
 	Number   string `json:"number"`
