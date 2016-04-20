@@ -2,10 +2,12 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"html"
 	"log"
 	"net/http"
 	"net/url"
+	"os"
 	"strconv"
 	"strings"
 
@@ -130,6 +132,6 @@ func main() {
 
 	// Run on OpenShift
 	bind := fmt.Sprintf("%s:%s", os.Getenv("OPENSHIFT_GO_IP"), os.Getenv("OPENSHIFT_GO_PORT"))
-	fmt.Printf("listening on %s...", bind)
+	log.Printf("listening on %s...", bind)
 	log.Fatal(http.ListenAndServe(bind, nil))
 }
