@@ -9,6 +9,16 @@ returns the results in JSON format. It takes advantage of
 [goquery](https://github.com/PuerkitoBio/goquery) package to parse the
 HTML results page and gather data for each RFC.
 
+A live version is currently running on
+[OpenShift](https://www.openshift.com/) at
+https://rfcsearch-gorun.rhcloud.com
+
+Queries are made on either keywords or RFC numbers. A query containing
+only numbers is assumed to be the RFC itself and returns only that
+RFC. If any characters appear in the query then keywords and titles
+will be searched.
+
+### Title / Keyword search
 
 ```
 $curl -s "https://rfcsearch-gorun.rhcloud.com/?q=coffee" | json_pp
@@ -24,5 +34,23 @@ $curl -s "https://rfcsearch-gorun.rhcloud.com/?q=coffee" | json_pp
    },
 
 ...
+
+```
+
+### RFC search
+
+```
+curl -s "https://rfcsearch-gorun.rhcloud.com/?q=4492" | json_pp
+[
+   {
+      "number" : "4492",
+      "status" : "Informational",
+      "date" : "May 2006",
+      "authors" : "S. Blake-Wilson, N. Bolyard, V. Gupta, C. Hawk, B. Moeller",
+      "title" : "Elliptic Curve Cryptography (ECC) Cipher Suites for Transport Layer Security (TLS)",
+      "link" : "http://tools.ietf.org/html/rfc4492",
+      "moreinfo" : "Updated by RFC 5246, RFC 7027, Errata"
+   }
+]
 
 ```
