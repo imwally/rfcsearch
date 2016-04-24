@@ -2,7 +2,8 @@
 
 [RFC](https://www.ietf.org/rfc.html) search results in JSON format.
 
-This is an API server that scraps data from RFC Editor's
+This is an API server written in Go that passes search parameters to
+RFC Editor's
 [search](https://www.rfc-editor.org/search/rfc_search.php) page and
 returns the results in JSON format. It takes advantage of
 [PuerkitoBio's](https://github.com/PuerkitoBio) excellent
