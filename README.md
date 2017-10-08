@@ -11,8 +11,8 @@ returns the results in JSON format. It takes advantage of
 HTML results page and gather data for each RFC.
 
 A live version is currently running on
-[OpenShift](https://www.openshift.com/) at
-https://rfcsearch-gorun.rhcloud.com
+[Heroku](https://www.heroku.com) at
+https://rfcsearch.herokuapp.com/
 
 Queries are made on either keywords or RFC numbers. A query containing
 only numbers is assumed to be the RFC itself and returns only that
@@ -22,7 +22,7 @@ will be searched.
 ### Title / Keyword search
 
 ```
-$curl -s "https://rfcsearch-gorun.rhcloud.com/?q=coffee" | json_pp
+$curl -s "https://rfcsearch.herokuapp.com/?q=coffee" | json_pp
 [
    {
       "title" : "The Hyper Text Coffee Pot Control Protocol for Tea Efflux Appliances (HTCPCP-TEA)",
@@ -41,7 +41,7 @@ $curl -s "https://rfcsearch-gorun.rhcloud.com/?q=coffee" | json_pp
 ### RFC search
 
 ```
-curl -s "https://rfcsearch-gorun.rhcloud.com/?q=4492" | json_pp
+curl -s "https://rfcsearch.herokuapp.com/?q=4492" | json_pp
 [
    {
       "number" : "4492",
