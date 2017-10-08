@@ -130,7 +130,7 @@ func main() {
 	http.HandleFunc("/", indexHandler)
 
 	// Run on Heroku
-	port := os.Getenv("PORT")
+	port := ":" + os.Getenv("PORT")
 	log.Printf("listening on %s...", port)
 	log.Fatal(http.ListenAndServe(port, nil))
 }
