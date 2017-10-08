@@ -22,7 +22,7 @@ will be searched.
 ### Title / Keyword search
 
 ```
-$curl -s "https://rfcsearch.herokuapp.com/?q=coffee" | json_pp
+$ curl -s "https://rfcsearch.herokuapp.com/?q=coffee" | json_pp
 [
    {
       "title" : "The Hyper Text Coffee Pot Control Protocol for Tea Efflux Appliances (HTCPCP-TEA)",
@@ -41,7 +41,7 @@ $curl -s "https://rfcsearch.herokuapp.com/?q=coffee" | json_pp
 ### RFC search
 
 ```
-curl -s "https://rfcsearch.herokuapp.com/?q=4492" | json_pp
+$ curl -s "https://rfcsearch.herokuapp.com/?q=4492" | json_pp
 [
    {
       "number" : "4492",
