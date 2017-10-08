@@ -1,0 +1,24 @@
+{
+	"ImportPath": "github.com/imwally/rfcsearch",
+	"GoVersion": "go1.9",
+	"GodepVersion": "v79",
+	"Deps": [
+		{
+			"ImportPath": "github.com/PuerkitoBio/goquery",
+			"Comment": "v1.1.0-9-g63e7f87",
+			"Rev": "63e7f870c2298e42bfc8b200db92e175a3e71120"
+		},
+		{
+			"ImportPath": "github.com/andybalholm/cascadia",
+			"Rev": "349dd0209470eabd9514242c688c403c0926d266"
+		},
+		{
+			"ImportPath": "golang.org/x/net/html",
+			"Rev": "a04bdaca5b32abe1c069418fb7088ae607de5bd0"
+		},
+		{
+			"ImportPath": "golang.org/x/net/html/atom",
+			"Rev": "a04bdaca5b32abe1c069418fb7088ae607de5bd0"
+		}
+	]
+}

@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"html"
 	"log"
 	"net/http"
@@ -130,8 +129,8 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 func main() {
 	http.HandleFunc("/", indexHandler)
 
-	// Run on OpenShift
-	bind := fmt.Sprintf("%s:%s", os.Getenv("OPENSHIFT_GO_IP"), os.Getenv("OPENSHIFT_GO_PORT"))
-	log.Printf("listening on %s...", bind)
-	log.Fatal(http.ListenAndServe(bind, nil))
+	// Run on Heroku
+	port := os.Getenv("PORT")
+	log.Printf("listening on %s...", port)
+	log.Fatal(http.ListenAndServe(port, nil))
 }
